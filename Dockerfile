@@ -1,12 +1,14 @@
-FROM silentdemonsd/wzmlx:hk
+FROM mysterysd/wzmlx:v3
+
+LABEL maintainer="Beast Bots <github.com/BeastBots/MirrorBeast>"
 
 WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 
-COPY requirements.txt .
+RUN uv venv --system-site-packages
 
-RUN pip3 install --upgrade pip setuptools
-RUN pip3 install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN uv pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
